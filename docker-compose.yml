@@ -10,7 +10,8 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASS: ${MYSQL_PASS}
     volumes:
-      - mysql_volume:/var/lib/mysql 
+      - mysql_volume:/var/lib/mysql
+      - ./init:/home
 
 volumes:
   mysql_volume:
