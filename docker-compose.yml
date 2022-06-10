@@ -9,9 +9,26 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASS: ${MYSQL_PASS}
+      MYSQL_DATABASE: app_db
+    ports:
+      - 6033:3306
     volumes:
       - mysql_volume:/var/lib/mysql
       - ./init:/home
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+    volumes:
+      - phpmyadmin_volume
 
 volumes:
   mysql_volume:
+  phpmyadmin_volume:
