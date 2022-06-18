@@ -17,23 +17,23 @@ services:
       - ./init:/home
     networks:
       - appnet
+    container_name: db-project-mysql-compose
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    links:
-      - db
     environment:
       PMA_HOST: db
-      PMA_PORT: 3306
-      PMA_ARBITRARY: 1
     restart: always
     ports:
       - 8081:80
-    volumes:
-      - phpmyadmin_volume
+    depends_on:
+      - db
+    networks:
+      - appnet
+    container_name: db-project-phpmyadmin-compose
 
 volumes:
   mysql_volume:
-  phpmyadmin_volume:
 
 networks:
   appnet:
