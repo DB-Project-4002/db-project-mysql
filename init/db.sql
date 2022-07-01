@@ -26,13 +26,13 @@ CREATE TABLE accounts (
 );
 
 CREATE TABLE connected_accounts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
     account_id INT NOT NULL,
     type VARCHAR(255) NOT NULL,
     token TEXT NOT NULL,
     address VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (account_id, type),
     FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE CASCADE
 );
     
@@ -43,12 +43,13 @@ CREATE TABLE accounts_relations (
     friend TINYINT(1) NOT NULL DEFAULT 0,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (account_id_1, account_id_2),
     FOREIGN KEY (account_id_1) REFERENCES accounts(id) ON DELETE CASCADE,
     FOREIGN KEY (account_id_2) REFERENCES accounts(id) ON DELETE CASCADE
 );
 
 CREATE TABLE account_settings (
-    account_id INT NOT NULL,
+    account_id INT PRIMARY KEY,
     is_2fa_enabled TINYINT(1) NOT NULL DEFAULT 0,
     is_subscribed_to_news TINYINT(1) NOT NULL DEFAULT 1,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -57,7 +58,7 @@ CREATE TABLE account_settings (
 );
 
 CREATE TABLE game_accounts (
-    account_id INT NOT NULL,
+    account_id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     level INT UNSIGNED NOT NULL,
     avatar VARCHAR(255) NOT NULL,
