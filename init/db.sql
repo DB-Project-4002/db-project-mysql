@@ -167,7 +167,7 @@ CREATE TABLE match_participations (
     account_id INT NOT NULL,
     time TIMESTAMP NOT NULL,
     champion_name VARCHAR(255) NOT NULL,
-    grade ENUM('A-', 'A', 'A+', 'B-', 'B', 'B+', 'C-', 'C', 'C+') NOT NULL,
+    grade ENUM('S+', 'S', 'S-', 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-') NOT NULL,
     kills INT NOT NULL,
     death INT NOT NULL,
     assists INT NOT NULL,
