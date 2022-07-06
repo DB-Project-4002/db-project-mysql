@@ -166,6 +166,7 @@ CREATE TABLE seasons (
 CREATE TABLE match_participations (
     account_id INT NOT NULL,
     time TIMESTAMP NOT NULL,
+    champion_name VARCHAR(255) NOT NULL,
     grade ENUM('A-', 'A', 'A+', 'B-', 'B', 'B+', 'C-', 'C', 'C+') NOT NULL,
     kills INT NOT NULL,
     death INT NOT NULL,
@@ -182,6 +183,7 @@ CREATE TABLE match_participations (
     item_6 VARCHAR(255) NULL,
     PRIMARY KEY (account_id, time),
     FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE CASCADE,
+    FOREIGN KEY (champion_name) REFERENCES champions(name) ON DELETE CASCADE,
     FOREIGN KEY (item_1) REFERENCES items(name) ON DELETE CASCADE,
     FOREIGN KEY (item_2) REFERENCES items(name) ON DELETE CASCADE,
     FOREIGN KEY (item_3) REFERENCES items(name) ON DELETE CASCADE,
