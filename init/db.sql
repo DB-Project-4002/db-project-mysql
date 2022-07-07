@@ -165,6 +165,7 @@ CREATE TABLE seasons (
 
 CREATE TABLE match_participations (
     account_id INT NOT NULL,
+    team ENUM('RED', 'BLUE') NOT NULL,
     time TIMESTAMP NOT NULL,
     champion_name VARCHAR(255) NOT NULL,
     grade ENUM('S+', 'S', 'S-', 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-') NOT NULL,
